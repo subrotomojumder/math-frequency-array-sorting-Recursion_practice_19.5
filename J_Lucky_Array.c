@@ -5,28 +5,28 @@ int main()
     int n;
     scanf("%d", &n);
     int a[n];
-    int min_element = INT_MAX;
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &a[i]);
-        if (min_element > a[i])
-        {
-            min_element = a[i];
-        }
     }
-    int freq[100000] = {0};
+    int min_element = a[0];
     for (int i = 0; i < n; i++)
     {
-        freq[a[i]]++;
+        if (min_element > a[i]) min_element = a[i];
     }
-    // printf("%d -> %d", min_element , freq[min_element]);
-    if (freq[min_element] % 2 == 0)
+    int freq[200001] = {0};
+    int OFFSET = 100000;
+    for (int i = 0; i < n; i++)
     {
-        printf("Unlucky");
+        freq[a[i] + OFFSET]++;
+    }
+    if (freq[min_element + OFFSET] % 2 != 0)
+    {
+        printf("Lucky");
     }
     else
     {
-        printf("Lucky");
+        printf("Unlucky");
     }
 
     return 0;
